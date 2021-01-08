@@ -1,0 +1,14 @@
+D:\OneDrive\TestDrive\TestDrive\TestDrive\bin\Debug\netstandard2.0\TestDrive.deps.json
+D:\OneDrive\TestDrive\TestDrive\TestDrive\bin\Debug\netstandard2.0\TestDrive.dll
+D:\OneDrive\TestDrive\TestDrive\TestDrive\bin\Debug\netstandard2.0\ref\TestDrive.dll
+D:\OneDrive\TestDrive\TestDrive\TestDrive\bin\Debug\netstandard2.0\TestDrive.pdb
+D:\OneDrive\TestDrive\TestDrive\TestDrive\obj\Debug\netstandard2.0\TestDrive.csprojAssemblyReference.cache
+D:\OneDrive\TestDrive\TestDrive\TestDrive\obj\Debug\netstandard2.0\App.xaml.g.cs
+D:\OneDrive\TestDrive\TestDrive\TestDrive\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+D:\OneDrive\TestDrive\TestDrive\TestDrive\obj\Debug\netstandard2.0\TestDrive.AssemblyInfoInputs.cache
+D:\OneDrive\TestDrive\TestDrive\TestDrive\obj\Debug\netstandard2.0\TestDrive.AssemblyInfo.cs
+D:\OneDrive\TestDrive\TestDrive\TestDrive\obj\Debug\netstandard2.0\TestDrive.csproj.CoreCompileInputs.cache
+D:\OneDrive\TestDrive\TestDrive\TestDrive\obj\Debug\netstandard2.0\XamlC.stamp
+D:\OneDrive\TestDrive\TestDrive\TestDrive\obj\Debug\netstandard2.0\TestDrive.dll
+D:\OneDrive\TestDrive\TestDrive\TestDrive\obj\Debug\netstandard2.0\ref\TestDrive.dll
+D:\OneDrive\TestDrive\TestDrive\TestDrive\obj\Debug\netstandard2.0\TestDrive.pdb
