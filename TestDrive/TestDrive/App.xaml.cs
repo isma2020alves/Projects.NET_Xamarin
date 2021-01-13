@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using TestDrive.Views;
 using Xamarin.Forms;
 
 namespace TestDrive
@@ -11,9 +11,9 @@ namespace TestDrive
     {
         public App()
         {
-            InitializeComponent();
+            InitializeComponent();  
 
-            MainPage = new TestDrive.MainPage();
+            MainPage = new NavigationPage(new ListingView());
         }
 
         protected override void OnStart()
