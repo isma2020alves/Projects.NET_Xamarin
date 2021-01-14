@@ -12,10 +12,12 @@ namespace TestDrive.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ScheduleView : ContentPage
     {
+        public Vehicle Vehicle { get; set; }
         public ScheduleView(Vehicle vehicle)
         {
             InitializeComponent();
-            this.Title = vehicle.Name;
+            this.Vehicle = vehicle;
+            this.BindingContext = this;
         }
     }
 }
