@@ -3,61 +3,106 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using TestDrive.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace TestDrive.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ScheduleView : ContentPage
     {
-        public Vehicle Vehicle { get; set; }
-        public string FullName { get; set; }
-        public string MobileNumber { get; set; }
-        public string Email { get; set; }
-        DateTime dateSchedule = DateTime.Today;
-        public DateTime DateSchedule 
+        public Schedule Schedule { get; set; }
+
+        public Vehicle Vehicle
         {
             get
             {
-                return dateSchedule;
-            } 
-        set
-            {
-                dateSchedule = value;
+                return Schedule.Vehicle;
             }
-        }
-        TimeSpan timeschedule;
-        public TimeSpan TimeSchedule 
-        {
-            get
-            {
-                return timeschedule;
-            } 
             set
             {
-                timeschedule = value;
+                Schedule.Vehicle = value;
+            }
+        }
+        public string FullName
+        {
+            get
+            {
+                return Schedule.FullName;
+            }
+            set
+            {
+                Schedule.FullName = value;
+            }
+        }
+
+        public string MobileNumber
+        {
+            get
+            {
+                return Schedule.MobileNumber;
+            }
+            set
+            {
+                Schedule.MobileNumber = value;
+            }
+        }
+
+        public string Email
+        {
+            get
+            {
+                return Schedule.Email;
+            }
+            set
+            {
+                Schedule.Email = value;
+            }
+        }
+
+        public DateTime DateSchedule
+        {
+            get
+            {
+                return Schedule.DateSchedule;
+            }
+            set
+            {
+                Schedule.DateSchedule = value;
+            }
+        }
+
+        public TimeSpan TimeSchedule
+        {
+            get
+            {
+                return Schedule.TimeSchedule;
+            }
+            set
+            {
+                Schedule.TimeSchedule = value;
             }
         }
         public ScheduleView(Vehicle vehicle)
         {
             InitializeComponent();
-            this.Vehicle = vehicle;
+            this.Schedule = new Schedule();
+            this.Schedule.Vehicle = vehicle;
             this.BindingContext = this;
         }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-          DisplayAlert("Schedule",
-        string.Format(@"
-        Full Name: {0}
-        Mobile Number: {1}
-        E - Mail: {2}
-        Date: {3}
-        Time: {4}",
-        FullName, MobileNumber, Email, DateSchedule.ToString("dd/MM/yyyy"),TimeSchedule),
-        "Confirm", "Cancel");
+            DisplayAlert("Schedule",
+          string.Format(@"
+        Vehicle: {0}
+        Full Name: {1}
+        Mobile Number: {2}
+        E - Mail: {3}
+        Date: {4}
+        Time: {5}",
+         Vehicle.Name , FullName, MobileNumber, Email, DateSchedule.ToString("dd/MM/yyyy"), TimeSchedule),
+          "Confirm", "Cancel");
         }
     }
 }
