@@ -4,5 +4,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TestDrive.Views.ScheduleView"
              Title="{Binding Vehicle.Name}">
-            
+    <StackLayout Margin="25">
+    <TableView>
+        <TableRoot>
+            <TableSection Title="Personal Details">
+                <EntryCell Label="Full Name:" Text="{Binding FullName}"></EntryCell>
+                <EntryCell Label="Mobile Number:" Keyboard="Telephone" Text="{Binding MobileNumber}"></EntryCell>
+                <EntryCell Label="E-Mail:" Keyboard="Email" Text="{Binding Email}"></EntryCell>
+            </TableSection>
+            <TableSection Title="Schedule">
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal" Margin="12,0,0,0">
+                        <Label Text="Date:"></Label>
+                        <DatePicker Date="{Binding DateSchedule}"></DatePicker>
+                    </StackLayout>
+                </ViewCell>
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal" Margin="12,0,0,0">
+                        <Label Text="Time:"></Label>
+                        <TimePicker Time="{Binding TimeSchedule}"></TimePicker>
+                    </StackLayout>
+                </ViewCell>
+
+            </TableSection>
+        </TableRoot>
+    </TableView>
+    <Button Text="Confirm Schedule" Clicked="Button_Clicked"></Button>
+    </StackLayout>
 </ContentPage>
+        
