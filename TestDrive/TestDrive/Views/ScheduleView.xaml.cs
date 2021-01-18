@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestDrive.Models;
+using TestDrive.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,84 +12,12 @@ namespace TestDrive.Views
 {
     public partial class ScheduleView : ContentPage
     {
-        public Schedule Schedule { get; set; }
-
-        public Vehicle Vehicle
-        {
-            get
-            {
-                return Schedule.Vehicle;
-            }
-            set
-            {
-                Schedule.Vehicle = value;
-            }
-        }
-        public string FullName
-        {
-            get
-            {
-                return Schedule.FullName;
-            }
-            set
-            {
-                Schedule.FullName = value;
-            }
-        }
-
-        public string MobileNumber
-        {
-            get
-            {
-                return Schedule.MobileNumber;
-            }
-            set
-            {
-                Schedule.MobileNumber = value;
-            }
-        }
-
-        public string Email
-        {
-            get
-            {
-                return Schedule.Email;
-            }
-            set
-            {
-                Schedule.Email = value;
-            }
-        }
-
-        public DateTime DateSchedule
-        {
-            get
-            {
-                return Schedule.DateSchedule;
-            }
-            set
-            {
-                Schedule.DateSchedule = value;
-            }
-        }
-
-        public TimeSpan TimeSchedule
-        {
-            get
-            {
-                return Schedule.TimeSchedule;
-            }
-            set
-            {
-                Schedule.TimeSchedule = value;
-            }
-        }
+        public ScheduleViewModel ViewModel { get; set; }
         public ScheduleView(Vehicle vehicle)
         {
             InitializeComponent();
-            this.Schedule = new Schedule();
-            this.Schedule.Vehicle = vehicle;
-            this.BindingContext = this;
+            this.ViewModel = new ScheduleViewModel(vehicle);
+            this.BindingContext = this.ViewModel;
         }
 
         private void Button_Clicked(object sender, EventArgs e)
@@ -101,7 +30,7 @@ namespace TestDrive.Views
         E - Mail: {3}
         Date: {4}
         Time: {5}",
-         Vehicle.Name , FullName, MobileNumber, Email, DateSchedule.ToString("dd/MM/yyyy"), TimeSchedule),
+         ViewModel.Vehicle.Name , ViewModel.FullName, ViewModel.MobileNumber, ViewModel.Email, ViewModel.DateSchedule.ToString("dd/MM/yyyy"), ViewModel.TimeSchedule),
           "Confirm", "Cancel");
         }
     }
