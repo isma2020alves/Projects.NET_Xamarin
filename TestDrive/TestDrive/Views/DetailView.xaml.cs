@@ -20,13 +20,22 @@ namespace TestDrive.Views
             InitializeComponent();
             this.Vehicle = vehicle;
             this.BindingContext = new DetailViewModel(vehicle);
+
         }
 
-        private void buttonNext_Clicked(object sender, EventArgs e)
+        protected override void OnAppearing()
         {
-            Navigation.PushAsync(new ScheduleView(this.Vehicle));
+            base.OnAppearing();
+            MessagingCenter.Subscribe<Vehicle>(this, "Next", (msg) =>
+              {
+                  Navigation.PushAsync(new ScheduleView(msg));
+              });
         }
 
-        
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<Vehicle>(this, "Next");
+        }
     }
 }

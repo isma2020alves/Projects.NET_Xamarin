@@ -29,7 +29,7 @@
             </TableSection>
         </TableRoot>
     </TableView>
-    <Button Text="Confirm Schedule" Clicked="Button_Clicked"></Button>
+    <Button Text="Confirm Schedule" Command="{Binding CommandSchedule}"></Button>
     </StackLayout>
 </ContentPage>
         

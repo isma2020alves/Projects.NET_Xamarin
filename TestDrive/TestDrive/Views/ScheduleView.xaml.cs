@@ -19,19 +19,28 @@ namespace TestDrive.Views
             this.ViewModel = new ScheduleViewModel(vehicle);
             this.BindingContext = this.ViewModel;
         }
-
-        private void Button_Clicked(object sender, EventArgs e)
+        protected override void OnAppearing()
         {
-            DisplayAlert("Schedule",
-          string.Format(@"
+            base.OnAppearing();
+            MessagingCenter.Subscribe<Schedule>(this, "Schedule", (msg) =>
+              {
+                  DisplayAlert("Schedule",
+                string.Format(@"
         Vehicle: {0}
         Full Name: {1}
         Mobile Number: {2}
         E - Mail: {3}
         Date: {4}
         Time: {5}",
-         ViewModel.Vehicle.Name , ViewModel.FullName, ViewModel.MobileNumber, ViewModel.Email, ViewModel.DateSchedule.ToString("dd/MM/yyyy"), ViewModel.TimeSchedule),
-          "Confirm", "Cancel");
+               ViewModel.Vehicle.Name, ViewModel.FullName, ViewModel.MobileNumber, ViewModel.Email, ViewModel.DateSchedule.ToString("dd/MM/yyyy"), ViewModel.TimeSchedule),
+                "Confirm", "Cancel");
+              });
         }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<Schedule>(this, "Schedule");
+        }
+
     }
 }

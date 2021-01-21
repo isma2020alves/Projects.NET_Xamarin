@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Input;
 using TestDrive.Models;
+using Xamarin.Forms;
+
 namespace TestDrive.ViewModels
 {
-   public class DetailViewModel : INotifyPropertyChanged
+    public class DetailViewModel : INotifyPropertyChanged
 
     {
         public Vehicle Vehicle { get; set; }
@@ -82,13 +85,19 @@ namespace TestDrive.ViewModels
         public DetailViewModel(Vehicle vehicle)
         {
             this.Vehicle = vehicle;
+            NextCommand = new Command(() =>
+             {
+                MessagingCenter.Send(vehicle, "Next");
+             });
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;   
-        public void OnPropertyChanged([CallerMemberName]string name = "")
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string name = "")
         {
             //if (PropertyChanged != null) insted of using "if" we used the conditional "?"
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+        public ICommand NextCommand { get; set; }
+
     }
 }

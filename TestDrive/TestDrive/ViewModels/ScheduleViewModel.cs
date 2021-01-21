@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
 using TestDrive.Models;
+using Xamarin.Forms;
 
 namespace TestDrive.ViewModels
 {
@@ -83,6 +85,12 @@ namespace TestDrive.ViewModels
         {
             this.Schedule = new Schedule();
             this.Schedule.Vehicle = vehicle;
+
+            CommandSchedule = new Command((msg) =>
+                {
+                    MessagingCenter.Send<Schedule>(this.Schedule, "Schedule");
+                });
         }
+        public ICommand CommandSchedule { get; set; }
     }
 }
