@@ -490,3 +490,9 @@ D:\OneDrive\TestDrive\TestDrive\TestDrive.Android\obj\Debug\90\stamp\_ConvertRes
 D:\OneDrive\TestDrive\TestDrive\TestDrive.Android\obj\Debug\90\stamp\_GenerateJavaStubs.stamp
 D:\OneDrive\TestDrive\TestDrive\TestDrive.Android\obj\Debug\90\stamp\_GeneratePackageManagerJava.stamp
 D:\OneDrive\TestDrive\TestDrive\TestDrive.Android\obj\Debug\90\stamp\_ResolveLibraryProjectImports.stamp
+D:\OneDrive\TestDrive\TestDrive\TestDrive.Android\obj\Debug\90\android\assets\Microsoft.Extensions.Primitives.dll
+D:\OneDrive\TestDrive\TestDrive\TestDrive.Android\obj\Debug\90\android\assets\Microsoft.Net.Http.Headers.dll
+D:\OneDrive\TestDrive\TestDrive\TestDrive.Android\obj\Debug\90\android\assets\System.Buffers.dll
+D:\OneDrive\TestDrive\TestDrive\TestDrive.Android\obj\Debug\90\android\assets\System.Memory.dll
+D:\OneDrive\TestDrive\TestDrive\TestDrive.Android\obj\Debug\90\android\assets\System.Runtime.CompilerServices.Unsafe.dll
+D:\OneDrive\TestDrive\TestDrive\TestDrive.Android\obj\Debug\90\android\assets\Newtonsoft.Json.dll

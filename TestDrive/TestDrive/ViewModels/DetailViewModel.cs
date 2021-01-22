@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace TestDrive.ViewModels
 {
-    public class DetailViewModel : INotifyPropertyChanged
+    public class DetailViewModel : BaseViewModel
 
     {
         public Vehicle Vehicle { get; set; }
@@ -91,12 +91,6 @@ namespace TestDrive.ViewModels
              });
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string name = "")
-        {
-            //if (PropertyChanged != null) insted of using "if" we used the conditional "?"
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
         public ICommand NextCommand { get; set; }
 
     }
