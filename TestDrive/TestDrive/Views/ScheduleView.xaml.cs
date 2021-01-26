@@ -22,25 +22,38 @@ namespace TestDrive.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            MessagingCenter.Subscribe<Schedule>(this, "Schedule", (msg) =>
+            MessagingCenter.Subscribe<Schedule>(this, "Schedule", async (msg) =>
               {
-                  DisplayAlert("Schedule",
-                string.Format(@"
-        Vehicle: {0}
-        Full Name: {1}
-        Mobile Number: {2}
-        E - Mail: {3}
-        Date: {4}
-        Time: {5}",
-               ViewModel.Vehicle.Name, ViewModel.FullName, ViewModel.MobileNumber, ViewModel.Email, ViewModel.DateSchedule.ToString("dd/MM/yyyy"), ViewModel.TimeSchedule),
-                "Confirm", "Cancel");
+                  var confirm = await DisplayAlert("Confirm Schedule",
+                      "Do you want to confirm the appointment?", "Yes", "No");
+
+                  if (confirm)
+                  {
+                      this.ViewModel.SaveSchedule();
+                  }
               });
+            MessagingCenter.Subscribe<Schedule>(this, "SuccessSchedule",
+                (msg) =>
+                {
+                    DisplayAlert("Schedule", "Schedule saved with success!", "ok");
+                });
+            MessagingCenter.Subscribe<ArgumentException>(this, "FailSchedule",
+                (msg) =>
+                {
+                    DisplayAlert("Schedule", "Fail to schedule the test drive!" +
+                        " Check your information and try again!", "ok");
+                });
         }
+          
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
             MessagingCenter.Unsubscribe<Schedule>(this, "Schedule");
+
+            MessagingCenter.Unsubscribe<Schedule>(this, "SuccessSchedule");
+            MessagingCenter.Unsubscribe<ArgumentException>(this, "FailSchedule");
         }
 
     }
 }
+ 
