@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using TestDrive.Views;
 using Xamarin.Forms;
+using static TestDrive.Views.LoginView;
 
 namespace TestDrive
 {
@@ -13,12 +14,17 @@ namespace TestDrive
         {
             InitializeComponent();  
 
-            MainPage = new NavigationPage(new ListingView());
+            MainPage = new LoginView();
         }
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+            MessagingCenter.Subscribe<User>(this, "SuccessLogin",
+                (user)=>
+                {
+                    MainPage = new NavigationPage(new ListingView());
+                });
+
         }
 
         protected override void OnSleep()
