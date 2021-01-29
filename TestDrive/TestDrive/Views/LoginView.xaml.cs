@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static TestDrive.LoginService;
 
 namespace TestDrive.Views
 {
@@ -26,9 +27,21 @@ namespace TestDrive.Views
             InitializeComponent();
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        protected override void OnAppearing()
         {
-            MessagingCenter.Send<User>(new User(), "SuccessLogin");
+            base.OnAppearing();
+            MessagingCenter.Subscribe<LoginException>(this, "FailLogin",
+                async (exc) =>
+                {
+                    await DisplayAlert("Login", exc.Message, "Ok");
+                });
         }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<LoginException>(this, "FailLogin");
+        }
+
     }
 }

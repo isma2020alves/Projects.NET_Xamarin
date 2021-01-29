@@ -12,8 +12,8 @@ namespace TestDrive.Views
 
     public partial class ListingView : ContentPage
     {
-    public ListingViewModel ViewModel { get; set; }
-        
+        public ListingViewModel ViewModel { get; set; }
+
         public ListingView()
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace TestDrive.Views
             base.OnAppearing();
             MessagingCenter.Subscribe<Vehicle>(this, "VehicleSelected", (msg) =>
               {
- Navigation.PushAsync(new DetailView(msg));
+                  Navigation.PushAsync(new DetailView(msg));
               });
             await this.ViewModel.GetVehicles();
         }

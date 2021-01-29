@@ -128,8 +128,8 @@ namespace TestDrive.ViewModels
 
 
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var answer = await client.PostAsync(URL_Post_Schedule, content);
-            if (answer.IsSuccessStatusCode)
+            var response = await client.PostAsync(URL_Post_Schedule, content);
+            if (response.IsSuccessStatusCode)
                 MessagingCenter.Send<Schedule>(this.Schedule, "SuccessSchedule");
             else
                 MessagingCenter.Send<ArgumentException>(new ArgumentException(), "FailSchedule");
