@@ -5,6 +5,7 @@ using System.Text;
 using TestDrive.Views;
 using Xamarin.Forms;
 using static TestDrive.Views.LoginView;
+using static TestDrive.Views.LoginView.LoginResult;
 
 namespace TestDrive
 {
@@ -12,7 +13,7 @@ namespace TestDrive
     {
         public App()
         {
-            InitializeComponent();  
+            InitializeComponent();
 
             MainPage = new LoginView();
         }
@@ -20,9 +21,10 @@ namespace TestDrive
         protected override void OnStart()
         {
             MessagingCenter.Subscribe<User>(this, "SuccessLogin",
-                (user)=>
+                (user) =>
                 {
-                    MainPage = new NavigationPage(new ListingView());
+                    //MainPage = new NavigationPage(new ListingView());
+                    MainPage = new MasterDetailView(user);
                 });
 
         }

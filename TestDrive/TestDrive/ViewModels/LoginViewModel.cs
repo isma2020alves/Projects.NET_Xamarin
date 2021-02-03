@@ -42,7 +42,7 @@ namespace TestDrive.ViewModels
             LoginCommand = new Command(async () =>
             {
                 var loginService = new LoginService();
-                await loginService.ToLogin(new Login(user,password));
+                await loginService.ToLogin(new Login(user, password));
             }, () =>
             {
                 return !string.IsNullOrEmpty(User) &&
@@ -52,4 +52,3 @@ namespace TestDrive.ViewModels
         }
     }
 }
-
