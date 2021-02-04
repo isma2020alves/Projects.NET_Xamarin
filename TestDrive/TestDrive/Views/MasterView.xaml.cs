@@ -25,11 +25,19 @@ namespace TestDrive.Views
             {
                 this.CurrentPage = this.Children[1];
             });
+
+            MessagingCenter.Subscribe<User>(this, "SuccessSaveProfile",
+                (user) =>
+                {
+                    this.CurrentPage = this.Children[0];
+                });
         }
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
             MessagingCenter.Unsubscribe<User>(this, "EditProfile");
+
+            MessagingCenter.Unsubscribe<User>(this, "SuccessSaveProfile");
         }
 
     }
