@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows.Input;
+using TestDrive.Media;
 using TestDrive.Models;
 using Xamarin.Forms;
 
@@ -12,23 +14,41 @@ namespace TestDrive.ViewModels
         public string Name
         {
             get { return this.user.nome; }
-            set { this.user.nome = value; }
+            private set
+            {
+                this.user.nome = value;
+                OnPropertyChanged();
+            }
         }
 
-        public string DateBirth 
+        public string DateBirth
         {
             get { return this.user.dataNascimento; }
-            set { this.user.dataNascimento = value; }
+            private set
+            {
+                this.user.dataNascimento = value;
+                OnPropertyChanged();
+            }
+
         }
         public string Mobile
         {
             get { return this.user.telefone; }
-            set { this.user.telefone = value; }
+            private set
+            {
+                this.user.telefone = value;
+                OnPropertyChanged();
+            }
+
         }
         public string Email
         {
             get { return this.user.email; }
-            set { this.user.email = value; }
+            private set
+            {
+                this.user.email = value;
+                OnPropertyChanged();
+            }
         }
 
         private bool editing = false;
@@ -36,16 +56,32 @@ namespace TestDrive.ViewModels
         public bool Editing
         {
             get { return editing; }
-            set { 
+
+            private set
+            {
                 editing = value;
-                OnPropertyChanged(nameof(Editing));
+                OnPropertyChanged();
+            }
+        }
+
+        private ImageSource profilePhoto = "Profile_Image.png";
+
+        public ImageSource ProfilePhoto
+        {
+            get { return profilePhoto; }
+
+            private set
+            {
+                profilePhoto = value;
+                OnPropertyChanged();
             }
         }
 
         private readonly User user;
-        public ICommand EditProfileCommand { get;}
-        public ICommand SaveProfileCommand { get;}
+        public ICommand EditProfileCommand { get; }
+        public ICommand SaveProfileCommand { get; }
         public ICommand EditingCommand { get; }
+        public ICommand TakePhotoCommand { get; }
         public MasterViewModel(User user)
         {
             this.user = user;
@@ -65,6 +101,19 @@ namespace TestDrive.ViewModels
             {
                 this.Editing = true;
             });
+
+            TakePhotoCommand = new Command(() =>
+           {
+               DependencyService.Get<ICamera>().TakePhoto();
+           });
+
+
+            MessagingCenter.Subscribe<byte[]>(this, "TakePhoto",
+                (bytes) =>
+                {
+                    ProfilePhoto = ImageSource.FromStream(
+                        () => new MemoryStream(bytes));
+                });
         }
     }
 }

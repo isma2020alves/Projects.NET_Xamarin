@@ -15,6 +15,8 @@
          VerticalOptions="CenterAndExpand"
          Margin="15">
                 <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <Image Source="{Binding ProfilePhoto}"></Image>
+                    <Button Text="Take a Photo" Command="{Binding TakePhotoCommand}"></Button>
                     <Label Text="{Binding Name}"></Label>
                     <BoxView Color="Gray" HeightRequest="1" HorizontalOptions="Fill"></BoxView>
                     <Label Text="{Binding Email}"></Label>
@@ -28,12 +30,13 @@
          VerticalOptions="CenterAndExpand"
          Margin="15">
                 <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <Image Source="{Binding ProfilePhoto}"></Image>
                     <TableView>
                         <TableRoot>
                             <TableSection Title="Personal Details">
                                 <EntryCell Placeholder="Name" Text="{Binding Name}" 
                                            IsEnabled="{Binding Editing}"></EntryCell>
-                                <EntryCell Placeholder="Date of Birth" Keyboard="Numeric" 
+                                <EntryCell Placeholder="Date of Birth" 
                                            Text="{Binding DateBirth}" IsEnabled="{Binding Editing}"></EntryCell>
                                 <EntryCell Placeholder="Mobile" Keyboard="Telephone" 
                                            Text="{Binding Mobile}" IsEnabled="{Binding Editing}"></EntryCell>
