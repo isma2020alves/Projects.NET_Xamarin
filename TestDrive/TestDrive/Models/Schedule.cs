@@ -6,10 +6,11 @@ namespace TestDrive.Models
 {
     public class Schedule
     {
-        public Vehicle Vehicle { get; set; }
         public string FullName { get; set; }
         public string MobileNumber { get; set; }
         public string Email { get; set; }
+        public string Model { get; set; }
+        public double Price { get; set; }
 
         DateTime dateSchedule = DateTime.Today;
         public DateTime DateSchedule
@@ -35,6 +36,13 @@ namespace TestDrive.Models
                 timeschedule = value;
             }
         }
-
+        public Schedule(string fullName, string mobileNumber, string email, string model, double price)
+        {
+            this.FullName = fullName;
+            this.MobileNumber = mobileNumber;
+            this.Email = email;
+            this.Model = model;
+            this.Price = price;
+        }
     }
 }

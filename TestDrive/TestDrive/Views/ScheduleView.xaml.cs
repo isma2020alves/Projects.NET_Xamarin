@@ -13,10 +13,10 @@ namespace TestDrive.Views
     public partial class ScheduleView : ContentPage
     {
         public ScheduleViewModel ViewModel { get; set; }
-        public ScheduleView(Vehicle vehicle)
+        public ScheduleView(Vehicle vehicle,User user)
         {
             InitializeComponent();
-            this.ViewModel = new ScheduleViewModel(vehicle);
+            this.ViewModel = new ScheduleViewModel(vehicle,user);
             this.BindingContext = this.ViewModel;
         }
         protected override void OnAppearing()

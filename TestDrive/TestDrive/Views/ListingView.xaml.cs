@@ -13,20 +13,21 @@ namespace TestDrive.Views
     public partial class ListingView : ContentPage
     {
         public ListingViewModel ViewModel { get; set; }
-
-        public ListingView()
+        readonly User user;
+        public ListingView(User user)
         {
             InitializeComponent();
             this.ViewModel = new ListingViewModel();
+            this.user = user;
             this.BindingContext = this.ViewModel;
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            MessagingCenter.Subscribe<Vehicle>(this, "VehicleSelected", (msg) =>
+            MessagingCenter.Subscribe<Vehicle>(this, "VehicleSelected", (vehicle) =>
               {
-                  Navigation.PushAsync(new DetailView(msg));
+                  Navigation.PushAsync(new DetailView(vehicle,user));
               });
             await this.ViewModel.GetVehicles();
         }
@@ -37,4 +38,4 @@ namespace TestDrive.Views
 
         }
     }
-}
+} 

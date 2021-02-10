@@ -14,11 +14,13 @@ namespace TestDrive.Views
     public partial class DetailView : ContentPage
     {
 
-        public Vehicle Vehicle{ get; set; }
-        public DetailView(Vehicle vehicle)
+        public Vehicle Vehicle{ get;}
+        public User Usuario { get; }
+        public DetailView(Vehicle vehicle, User user)
         {
             InitializeComponent();
             this.Vehicle = vehicle;
+            this.Usuario = user;
             this.BindingContext = new DetailViewModel(vehicle);
 
         }
@@ -26,9 +28,9 @@ namespace TestDrive.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            MessagingCenter.Subscribe<Vehicle>(this, "Next", (msg) =>
+            MessagingCenter.Subscribe<Vehicle>(this, "Next", (vehicle) =>
               {
-                  Navigation.PushAsync(new ScheduleView(msg));
+                  Navigation.PushAsync(new ScheduleView(vehicle,this.Usuario));
               });
         }
 

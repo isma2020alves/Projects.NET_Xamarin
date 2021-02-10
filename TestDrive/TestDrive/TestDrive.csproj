@@ -13,37 +13,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Net.Http.Headers" Version="2.2.8" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Views\ListingView.xaml.cs">
-      <DependentUpon>ListingView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\DetailView.xaml.cs">
-      <DependentUpon>DetailView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\MasterDetailView.xaml.cs">
-      <DependentUpon>MasterDetailView.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Views\DetailView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\LoginView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\MasterDetailView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\MasterView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ScheduleView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
   </ItemGroup>
 </Project>

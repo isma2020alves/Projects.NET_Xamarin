@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Windows.Input;
+using TestDrive.Data;
 using TestDrive.Models;
 using Xamarin.Forms;
 
@@ -14,24 +15,26 @@ namespace TestDrive.ViewModels
         const string URL_Post_Schedule = "https://aluracar.herokuapp.com/salvaragendamento";
         public Schedule Schedule { get; set; }
 
-        public Vehicle Vehicle
+        public string Model
         {
-            get
-            {
-                return Schedule.Vehicle;
-            }
-            set
-            {
-                Schedule.Vehicle = value;
-            }
+            get { return this.Schedule.Model; }
+            private set { this.Schedule.Model = value; }
         }
+
+        public double Price
+        {
+            get { return this.Schedule.Price; }
+            private set { this.Schedule.Price = value; }
+        }
+
+
         public string FullName
         {
             get
             {
                 return Schedule.FullName;
             }
-            set
+            private set
             {
                 Schedule.FullName = value;
                 OnPropertyChanged();
@@ -45,7 +48,7 @@ namespace TestDrive.ViewModels
             {
                 return Schedule.MobileNumber;
             }
-            set
+            private set
             {
                 Schedule.MobileNumber = value;
                 OnPropertyChanged();
@@ -59,7 +62,7 @@ namespace TestDrive.ViewModels
             {
                 return Schedule.Email;
             }
-            set
+            private set
             {
                 Schedule.Email = value;
                 OnPropertyChanged();
@@ -73,7 +76,7 @@ namespace TestDrive.ViewModels
             {
                 return Schedule.DateSchedule;
             }
-            set
+            private set
             {
                 Schedule.DateSchedule = value;
             }
@@ -85,15 +88,14 @@ namespace TestDrive.ViewModels
             {
                 return Schedule.TimeSchedule;
             }
-            set
+            private set
             {
                 Schedule.TimeSchedule = value;
             }
         }
-        public ScheduleViewModel(Vehicle vehicle)
+        public ScheduleViewModel(Vehicle vehicle, User user)
         {
-            this.Schedule = new Schedule();
-            this.Schedule.Vehicle = vehicle;
+            this.Schedule = new Schedule(user.nome,user.telefone,user.email,vehicle.Name,vehicle.Price);
 
             CommandSchedule = new Command(() =>
                 {
@@ -120,8 +122,8 @@ namespace TestDrive.ViewModels
                 nome = FullName,
                 fone = MobileNumber,
                 email = Email,
-                carro = Vehicle.Name,
-                preco = Vehicle.Price,
+                carro = Model,
+                preco = Price,
                 dataAgendamento = dateTimeSchedule
             }
                 );
@@ -129,10 +131,22 @@ namespace TestDrive.ViewModels
 
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await client.PostAsync(URL_Post_Schedule, content);
+            
+            SaveScheduleDB();
+
             if (response.IsSuccessStatusCode)
                 MessagingCenter.Send<Schedule>(this.Schedule, "SuccessSchedule");
             else
                 MessagingCenter.Send<ArgumentException>(new ArgumentException(), "FailSchedule");
+        }
+
+        private void SaveScheduleDB()
+        {
+            using (var connection = DependencyService.Get<ISQLite>().GetConnection())
+            {
+                var dao = new ScheduleDAO(connection);
+                dao.Save(new Schedule(FullName,MobileNumber,Email,Model, Price));
+            }
         }
     }
 }
