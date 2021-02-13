@@ -17,3 +17,4 @@ D:\OneDrive\TestDrive\TestDrive\TestDrive\obj\Debug\netstandard2.0\Views\Schedul
 D:\OneDrive\TestDrive\TestDrive\TestDrive\obj\Debug\netstandard2.0\Views\LoginView.xaml.g.cs
 D:\OneDrive\TestDrive\TestDrive\TestDrive\obj\Debug\netstandard2.0\Views\MasterDetailView.xaml.g.cs
 D:\OneDrive\TestDrive\TestDrive\TestDrive\obj\Debug\netstandard2.0\Views\MasterView.xaml.g.cs
+D:\OneDrive\TestDrive\TestDrive\TestDrive\obj\Debug\netstandard2.0\Views\ScheduleUserView.xaml.g.cs

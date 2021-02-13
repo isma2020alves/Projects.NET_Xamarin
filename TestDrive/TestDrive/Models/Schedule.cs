@@ -7,7 +7,7 @@ namespace TestDrive.Models
 {
     public class Schedule
     {
-        [PrimaryKey,AutoIncrement]
+        [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
         public string FullName { get; set; }
         public string MobileNumber { get; set; }
@@ -27,17 +27,32 @@ namespace TestDrive.Models
                 dateSchedule = value;
             }
         }
-        TimeSpan timeschedule;
+        TimeSpan timeSchedule;
         public TimeSpan TimeSchedule
         {
             get
             {
-                return timeschedule;
+                return timeSchedule;
             }
             set
             {
-                timeschedule = value;
+                timeSchedule = value;
             }
+        }
+        public string DateFormatted
+        {
+            get
+            {
+                return DateSchedule.Add(timeSchedule)
+                    .ToString("dd/MM/yyyy HH:mm");
+            }
+        }
+        public Schedule(string fullName, string mobileNumber, string email, string model, double price, DateTime dateSchedule, TimeSpan timeSchedule)
+            : this(fullName, mobileNumber, email, model, price)
+        {
+
+            this.DateSchedule = dateSchedule;
+            this.TimeSchedule = timeSchedule;
         }
         public Schedule(string fullName, string mobileNumber, string email, string model, double price)
         {

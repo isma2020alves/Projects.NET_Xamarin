@@ -82,6 +82,7 @@ namespace TestDrive.ViewModels
         public ICommand SaveProfileCommand { get; }
         public ICommand EditingCommand { get; }
         public ICommand TakePhotoCommand { get; }
+        public ICommand MyAppointmentsCommand { get; }
         public MasterViewModel(User user)
         {
             this.user = user;
@@ -107,6 +108,10 @@ namespace TestDrive.ViewModels
                DependencyService.Get<ICamera>().TakePhoto();
            });
 
+            MyAppointmentsCommand = new Command(() =>
+            {
+              MessagingCenter.Send<User>(user,"MyAppointments");
+            });
 
             MessagingCenter.Subscribe<byte[]>(this, "TakePhoto",
                 (bytes) =>
