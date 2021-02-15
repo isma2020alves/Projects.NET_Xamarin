@@ -47,6 +47,10 @@ namespace TestDrive.Models
                     .ToString("dd/MM/yyyy HH:mm");
             }
         }
+        public Schedule()
+        {
+
+        }
         public Schedule(string fullName, string mobileNumber, string email, string model, double price, DateTime dateSchedule, TimeSpan timeSchedule)
             : this(fullName, mobileNumber, email, model, price)
         {
