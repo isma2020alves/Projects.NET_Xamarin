@@ -32,11 +32,20 @@ namespace TestDrive.Views
                     new ScheduleUserView());
                     this.IsPresented = false;
                 });
+
+            MessagingCenter.Subscribe<User>(this, "NewSchedule",
+                (user) =>
+                {
+                    this.Detail = new NavigationPage(new ListingView(user));
+                    this.IsPresented = false;
+                });
     }
             protected override void OnDisappearing()
         {
             base.OnDisappearing();
             MessagingCenter.Unsubscribe<User>(this, "MyAppointments");
+
+            MessagingCenter.Unsubscribe<User>(this, "NewSchedule");
         }
     }
 }

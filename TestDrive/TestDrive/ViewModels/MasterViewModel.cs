@@ -83,6 +83,7 @@ namespace TestDrive.ViewModels
         public ICommand EditingCommand { get; }
         public ICommand TakePhotoCommand { get; }
         public ICommand MyAppointmentsCommand { get; }
+        public ICommand NewScheduleCommand { get; }
         public MasterViewModel(User user)
         {
             this.user = user;
@@ -110,8 +111,13 @@ namespace TestDrive.ViewModels
 
             MyAppointmentsCommand = new Command(() =>
             {
-              MessagingCenter.Send<User>(user,"MyAppointments");
+                MessagingCenter.Send<User>(user, "MyAppointments");
             });
+
+            NewScheduleCommand = new Command(() =>
+           {
+               MessagingCenter.Send<User>(user, "NewSchedule");
+           });
 
             MessagingCenter.Subscribe<byte[]>(this, "TakePhoto",
                 (bytes) =>

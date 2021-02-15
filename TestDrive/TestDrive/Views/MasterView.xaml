@@ -23,6 +23,7 @@
                     <BoxView Color="Gray" HeightRequest="1" HorizontalOptions="Fill"></BoxView>
                     <Button Text="Perfil" Command="{Binding EditProfileCommand}"></Button>
                     <Button Text="My Appointments" Command="{Binding MyAppointmentsCommand}"></Button>
+                    <Button Text="New Appointment" Command="{Binding NewScheduleCommand}"></Button>
                 </StackLayout>
             </Frame>
         </ContentPage>
