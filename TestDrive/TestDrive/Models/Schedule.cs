@@ -14,6 +14,7 @@ namespace TestDrive.Models
         public string Email { get; set; }
         public string Model { get; set; }
         public double Price { get; set; }
+        public bool Confirmed { get; set; }
 
         DateTime dateSchedule = DateTime.Today;
         public DateTime DateSchedule
@@ -65,6 +66,11 @@ namespace TestDrive.Models
             this.Email = email;
             this.Model = model;
             this.Price = price;
+        }
+        public Schedule(string fullName, string mobileNumber, string email, string model, double price, DateTime dateSchedule, TimeSpan timeSchedule, bool confirmed)
+            : this(fullName, mobileNumber, email, model, price,dateSchedule,timeSchedule)
+        {
+            this.Confirmed = confirmed;
         }
     }
 }
