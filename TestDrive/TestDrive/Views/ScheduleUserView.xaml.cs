@@ -30,7 +30,7 @@ namespace TestDrive.Views
                 {
                     if (!schedule.Confirmed)
                     {
-                        var resend = await DisplayAlert("Resend", "Do you want to send this appointment?", "Yes", "No");
+                        var resend = await DisplayAlert("Resend", "Do you want to resend this appointment?", "Yes", "No");
                         if (resend)
                         {
                             ScheduleService scheduleService = new ScheduleService();
@@ -38,12 +38,26 @@ namespace TestDrive.Views
                             this._viewModel.UpdateList();
                         }
                     }
-                }   );
+                });
+            MessagingCenter.Subscribe<Schedule>(this, "SuccessSchedule",
+                async (schedule) =>
+                {
+                    await DisplayAlert("Resend", "Sent with success!", "ok");
+                });
+            MessagingCenter.Subscribe<ArgumentException>(this, "FailSchedule",
+                async (schedule) =>
+                {
+                    await DisplayAlert("Resend", "Failed to resend!", "ok");
+                });
         }
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
             MessagingCenter.Unsubscribe<Schedule>(this, "ScheduleSelected");
+
+            MessagingCenter.Unsubscribe<Schedule>(this, "SuccessSchedule");
+            MessagingCenter.Unsubscribe<ArgumentException>(this, "FailSchedule");
         }
+
     }
 }

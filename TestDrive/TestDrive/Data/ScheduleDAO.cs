@@ -6,7 +6,7 @@ using TestDrive.Models;
 
 namespace TestDrive.Data
 {
-    class ScheduleDAO
+   public class ScheduleDAO
     {
         readonly SQLiteConnection connection;
         private List<Schedule> list;
@@ -15,7 +15,11 @@ namespace TestDrive.Data
         {
             get
             {
-                return connection.Table<Schedule>().ToList();
+                if (list == null)
+                {
+                    list = new List<Schedule>(connection.Table<Schedule>());
+                }
+                return list;
             }
             private set { list = value; }
         }
@@ -28,7 +32,14 @@ namespace TestDrive.Data
 
         public void Save(Schedule schedule)
         {
-            connection.Insert(schedule);
+            if (this.connection.Find<Schedule>(schedule.ID) == null)
+            {
+                this.connection.Insert(schedule);
+            }
+            else
+            {
+                this.connection.Update(schedule);
+            }
         }
     }
 }

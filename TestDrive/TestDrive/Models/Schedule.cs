@@ -48,6 +48,7 @@ namespace TestDrive.Models
                     .ToString("dd/MM/yyyy HH:mm");
             }
         }
+        
         public Schedule()
         {
 
@@ -66,11 +67,6 @@ namespace TestDrive.Models
             this.Email = email;
             this.Model = model;
             this.Price = price;
-        }
-        public Schedule(string fullName, string mobileNumber, string email, string model, double price, DateTime dateSchedule, TimeSpan timeSchedule, bool confirmed)
-            : this(fullName, mobileNumber, email, model, price,dateSchedule,timeSchedule)
-        {
-            this.Confirmed = confirmed;
         }
     }
 }

@@ -31,9 +31,7 @@ namespace TestDrive.Services
                 carro = schedule.Model,
                 preco = schedule.Price,
                 dataAgendamento = dateTimeSchedule
-            }
-                );
-
+            });
 
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await client.PostAsync(URL_Post_Schedule, content);
@@ -51,7 +49,7 @@ namespace TestDrive.Services
             using (var connection = DependencyService.Get<ISQLite>().GetConnection())
             {
                 var dao = new ScheduleDAO(connection);
-                dao.Save(new Schedule(schedule.FullName, schedule.MobileNumber, schedule.Email, schedule.Model, schedule.Price, schedule.DateSchedule, schedule.TimeSchedule, schedule.Confirmed));
+                dao.Save(schedule);
             }
         }
 
