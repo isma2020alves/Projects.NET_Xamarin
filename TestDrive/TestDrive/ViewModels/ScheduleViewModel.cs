@@ -80,6 +80,8 @@ namespace TestDrive.ViewModels
             private set
             {
                 Schedule.DateSchedule = value;
+                OnPropertyChanged();
+                ((Command)CommandSchedule).ChangeCanExecute();
             }
         }
 
@@ -92,6 +94,8 @@ namespace TestDrive.ViewModels
             private set
             {
                 Schedule.TimeSchedule = value;
+                OnPropertyChanged();
+                ((Command)CommandSchedule).ChangeCanExecute();
             }
         }
         public ScheduleViewModel(Vehicle vehicle, User user)

@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TestDrive.ViewModels;
 
 namespace TestDrive.Models
 {
-    public class Schedule
+    public class Schedule : BaseViewModel
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
